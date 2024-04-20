@@ -3,10 +3,8 @@ import pako from 'pako'
 function encodePlantUML(plantumlText: string): string {
   // Encode text in UTF-8
   const utf8Encoded: Uint8Array = new TextEncoder().encode(plantumlText)
-  console.log('utf8Encoded: ', Array.from(utf8Encoded))
   // Compress using Deflate algorithm
   const compressed: Uint8Array = pako.deflate(utf8Encoded)
-  console.log('compressed: ', Array.from(compressed))
   // Reencode in base64
   const reencoded: string = btoa(
     String.fromCharCode.apply(null, Array.from(compressed))
